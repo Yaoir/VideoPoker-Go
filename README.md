@@ -29,6 +29,15 @@ It's a great way to practice your strategy for fun, or before going to a casino.
 The text-based playing action allows for quick play and more rapid training than
 with a GUI application.
 
+### Screenshots
+
+Colored Text (`-u0` option)
+/images/VideoPoker-01-PlainText.png
+Unicode Suits (`-u1` option, default)
+/images/VideoPoker-02-UnicodeSuits.png
+Unicode Card Faces (`-u2` option)
+/images/VideoPoker-03-FullUnicode.png
+
 ### Manual Page
 
 ```
