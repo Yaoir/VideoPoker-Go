@@ -1,9 +1,22 @@
-```
+### Introduction
+
 This is the Go version of videopoker.
 
-It took about 8 hours of work for me to translate it into Go from the original C-language version.
+I did this because I was wondering how long it would take to tranlate a 1000-line C program into Go.
+It took about 8 hours. It was not difficult at all, but some things had to be rewritten into the way things are done in Go: no pointer arithmetic, and different handling of Unicode, random number generation, and STDIN/STDOUT input and output.
 
------------------ Description ---------------------------
+### Quick Start
+
+To get it working, just run
+
+```
+$ go build videopoker.go
+$ videopoker
+```
+
+See the manual page below for directions on how to play.
+
+### Project Description
 
 A text-based video poker for Linux.
 
@@ -16,8 +29,9 @@ It's a great way to practice your strategy for fun, or before going to a casino.
 The text-based playing action allows for quick play and more rapid training than
 with a GUI application.
 
------------------  Manual Page -------------------
+### Manual Page
 
+```
 VIDEOPOKER(6)                    Games Manual                    VIDEOPOKER(6)
 
 
@@ -200,5 +214,4 @@ COPYRIGHT
 
 
 Jay Ts                           December 2016                   VIDEOPOKER(6)
-
 ```
