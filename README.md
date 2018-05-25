@@ -32,10 +32,15 @@ with a GUI application.
 ### Screenshots
 
 Colored Text (`-u0` option)
+
 ![screenshot 1](/images/VideoPoker-01-PlainText.png)
+
 Unicode Suits (`-u1` option, default)
+
 ![screenshot 2](/images/VideoPoker-02-UnicodeSuits.png)
+
 Unicode Card Faces (`-u2` option)
+
 ![screenshot 3](/images/VideoPoker-03-FullUnicode.png)
 
 ### Manual Page
