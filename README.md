@@ -32,11 +32,11 @@ with a GUI application.
 ### Screenshots
 
 Colored Text (`-u0` option)
-/images/VideoPoker-01-PlainText.png
+![screenshot 1](/images/VideoPoker-01-PlainText.png)
 Unicode Suits (`-u1` option, default)
-/images/VideoPoker-02-UnicodeSuits.png
+![screenshot 2](/images/VideoPoker-02-UnicodeSuits.png)
 Unicode Card Faces (`-u2` option)
-/images/VideoPoker-03-FullUnicode.png
+![screenshot 3](/images/VideoPoker-03-FullUnicode.png)
 
 ### Manual Page
 
