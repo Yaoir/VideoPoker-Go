@@ -31,15 +31,15 @@ with a GUI application.
 
 ### Screenshots
 
-Colored Text (`-u0` option)
+Colored Text (`-u1` option)
 
 ![screenshot 1](/images/VideoPoker-01-PlainText.png)
 
-Unicode Suits (`-u1` option, default)
+Unicode Suits (`-u2` option, default)
 
 ![screenshot 2](/images/VideoPoker-02-UnicodeSuits.png)
 
-Unicode Card Faces (`-u2` option)
+Unicode Card Faces (`-u3` option)
 
 ![screenshot 3](/images/VideoPoker-03-FullUnicode.png)
 

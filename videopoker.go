@@ -186,6 +186,27 @@ var markheld bool = false
 
 var quiet bool = false
 
+/* Sanity check: check that there are no duplicate cards in hand */
+
+func check_for_dupes() bool {
+//
+	var i, j int
+
+// For debugging: To enable checking, comment out the following line
+return false
+
+	for i = 0; i < CARDS; i++ {
+	//
+		for j = i+1; j < CARDS; j++ {
+		//
+			if hand[i].index == hand[j].index &&
+			   hand[i].suit  == hand[j].suit { return true }
+		}
+	}
+
+	return false
+}
+
 /*
 	Some ANSI Terminal escape codes:
 	ESC[38;5; then one of (0m = black, 1m = red, 2m = green, 3m = yellow,
@@ -339,9 +360,11 @@ func showhand() {
 
 	/* print a space to separate output from user input */
 	fmt.Printf(" ")
-/*
-	if check_for_dupes() == 0 { fmt.Printf("\n!!! DUPLICATE CARD !!!\n\n") }
-*/
+	if check_for_dupes() {
+	//
+		fmt.Printf("\n!!! DUPLICATE CARD !!!\n\n")
+		exit(1)
+	}
 }
 
 /* The various video poker games that are supported */
@@ -927,7 +950,12 @@ func play() {
 	//
 		/* find a card not already dealt */
 
-		for crd = random()%CARDSINDECK; deck[crd].gone != 0 ; crd = random()%CARDSINDECK { }
+		// Go has no 'do ... while' construct, so it's done like this:
+		for {
+		//
+			crd = random()%CARDSINDECK
+			if deck[crd].gone == 0 { break }
+		}
 
 		deck[crd].gone = 1
 		hand[i] = deck[crd]
@@ -998,7 +1026,12 @@ func play() {
 	//
 		if hold[i] == 0 {
 		//
-			for crd = random()%CARDSINDECK; deck[crd].gone != 0; crd = random()%CARDSINDECK { }
+			// Go has no 'do {} while()' construct, so it's written like this:
+			for {
+			//
+				crd = random()%CARDSINDECK
+				if deck[crd].gone == 0 { break }
+			}
 
 			deck[crd].gone = 1
 			hand[i] = deck[crd]
