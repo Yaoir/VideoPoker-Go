@@ -68,71 +68,81 @@ var suitname [NUMSUITS]string = [NUMSUITS]string {
 	"S",
 	}
 
-/* Needed for recognizing royal flush, or tens or better (TEN),
-   or jacks or better (JACK) */
-
-const TEN = 9	/* the index of the "10" card */
-const JACK = 10	/* the index of the "jack" card */
+const (
+	TWO	= iota+1
+	THREE
+	FOUR
+	FIVE
+	SIX
+	SEVEN
+	EIGHT
+	NINE
+	TEN  /* needed for recognizing royal flush, or tens or better (TEN), or jacks or better (JACK) */
+	JACK /* needed for recognizing royal flush, or tens or better (TEN), or jacks or better (JACK) */
+	QUEEN
+	KING
+	ACE  /* needed for recognizing Ace-low straight (Ace, 2, 3, 4, 5) */
+)
 
 /* The standard deck of 52 cards */
 
 var deck [CARDSINDECK]card = [CARDSINDECK]card {
 /*	index, card, Unicode, suit, gone */
-	{  1, " 2", "\U0001F0D2", CLUBS, 0 },
-	{  2, " 3", "\U0001F0D3", CLUBS, 0 },
-	{  3, " 4", "\U0001F0D4", CLUBS, 0 },
-	{  4, " 5", "\U0001F0D5", CLUBS, 0 },
-	{  5, " 6", "\U0001F0D6", CLUBS, 0 },
-	{  6, " 7", "\U0001F0D7", CLUBS, 0 },
-	{  7, " 8", "\U0001F0D8", CLUBS, 0 },
-	{  8, " 9", "\U0001F0D9", CLUBS, 0 },
-	{  9, "10", "\U0001F0Da", CLUBS, 0 },
-	{ 10, " J", "\U0001F0Db", CLUBS, 0 },
-	{ 11, " Q", "\U0001F0Dd", CLUBS, 0 },
-	{ 12, " K", "\U0001F0De", CLUBS, 0 },
-	{ 13, " A", "\U0001F0D1", CLUBS, 0 },
+	{ TWO,   " 2", "\U0001F0D2", CLUBS, 0 },
+	{ THREE, " 3", "\U0001F0D3", CLUBS, 0 },
+	{ FOUR,  " 4", "\U0001F0D4", CLUBS, 0 },
+	{ FIVE,  " 5", "\U0001F0D5", CLUBS, 0 },
+	{ SIX,   " 6", "\U0001F0D6", CLUBS, 0 },
+	{ SEVEN, " 7", "\U0001F0D7", CLUBS, 0 },
+	{ EIGHT, " 8", "\U0001F0D8", CLUBS, 0 },
+	{ NINE,  " 9", "\U0001F0D9", CLUBS, 0 },
+	{ TEN,   "10", "\U0001F0Da", CLUBS, 0 },
+	{ JACK,  " J", "\U0001F0Db", CLUBS, 0 },
+	{ QUEEN, " Q", "\U0001F0Dd", CLUBS, 0 },
+	{ KING,  " K", "\U0001F0De", CLUBS, 0 },
+	{ ACE,   " A", "\U0001F0D1", CLUBS, 0 },
 
-	{  1, " 2", "\U0001F0C2", DIAMONDS, 0 },
-	{  2, " 3", "\U0001F0C3", DIAMONDS, 0 },
-	{  3, " 4", "\U0001F0C4", DIAMONDS, 0 },
-	{  4, " 5", "\U0001F0C5", DIAMONDS, 0 },
-	{  5, " 6", "\U0001F0C6", DIAMONDS, 0 },
-	{  6, " 7", "\U0001F0C7", DIAMONDS, 0 },
-	{  7, " 8", "\U0001F0C8", DIAMONDS, 0 },
-	{  8, " 9", "\U0001F0C9", DIAMONDS, 0 },
-	{  9, "10", "\U0001F0Ca", DIAMONDS, 0 },
-	{ 10, " J", "\U0001F0Cb", DIAMONDS, 0 },
-	{ 11, " Q", "\U0001F0Cd", DIAMONDS, 0 },
-	{ 12, " K", "\U0001F0Ce", DIAMONDS, 0 },
-	{ 13, " A", "\U0001F0C1", DIAMONDS, 0 },
+	{ TWO,   " 2", "\U0001F0C2", DIAMONDS, 0 },
+	{ THREE, " 3", "\U0001F0C3", DIAMONDS, 0 },
+	{ FOUR,  " 4", "\U0001F0C4", DIAMONDS, 0 },
+	{ FIVE,  " 5", "\U0001F0C5", DIAMONDS, 0 },
+	{ SIX,   " 6", "\U0001F0C6", DIAMONDS, 0 },
+	{ SEVEN, " 7", "\U0001F0C7", DIAMONDS, 0 },
+	{ EIGHT, " 8", "\U0001F0C8", DIAMONDS, 0 },
+	{ NINE,  " 9", "\U0001F0C9", DIAMONDS, 0 },
+	{ TEN,   "10", "\U0001F0Ca", DIAMONDS, 0 },
+	{ JACK,  " J", "\U0001F0Cb", DIAMONDS, 0 },
+	{ QUEEN, " Q", "\U0001F0Cd", DIAMONDS, 0 },
+	{ KING,  " K", "\U0001F0Ce", DIAMONDS, 0 },
+	{ ACE,   " A", "\U0001F0C1", DIAMONDS, 0 },
 
-	{  1, " 2", "\U0001F0B2", HEARTS, 0 },
-	{  2, " 3", "\U0001F0B3", HEARTS, 0 },
-	{  3, " 4", "\U0001F0B4", HEARTS, 0 },
-	{  4, " 5", "\U0001F0B5", HEARTS, 0 },
-	{  5, " 6", "\U0001F0B6", HEARTS, 0 },
-	{  6, " 7", "\U0001F0B7", HEARTS, 0 },
-	{  7, " 8", "\U0001F0B8", HEARTS, 0 },
-	{  8, " 9", "\U0001F0B9", HEARTS, 0 },
-	{  9, "10", "\U0001F0Ba", HEARTS, 0 },
-	{ 10, " J", "\U0001F0Bb", HEARTS, 0 },
-	{ 11, " Q", "\U0001F0Bd", HEARTS, 0 },
-	{ 12, " K", "\U0001F0Be", HEARTS, 0 },
-	{ 13, " A", "\U0001F0B1", HEARTS, 0 },
+	{ TWO,   " 2", "\U0001F0B2", HEARTS, 0 },
+	{ THREE, " 3", "\U0001F0B3", HEARTS, 0 },
+	{ FOUR,  " 4", "\U0001F0B4", HEARTS, 0 },
+	{ FIVE,  " 5", "\U0001F0B5", HEARTS, 0 },
+	{ SIX,   " 6", "\U0001F0B6", HEARTS, 0 },
+	{ SEVEN, " 7", "\U0001F0B7", HEARTS, 0 },
+	{ EIGHT, " 8", "\U0001F0B8", HEARTS, 0 },
+	{ NINE,  " 9", "\U0001F0B9", HEARTS, 0 },
+	{ TEN,   "10", "\U0001F0Ba", HEARTS, 0 },
+	{ JACK,  " J", "\U0001F0Bb", HEARTS, 0 },
+	{ QUEEN, " Q", "\U0001F0Bd", HEARTS, 0 },
+	{ KING,  " K", "\U0001F0Be", HEARTS, 0 },
+	{ ACE,   " A", "\U0001F0B1", HEARTS, 0 },
 
-	{  1, " 2", "\U0001F0A2", SPADES, 0 },
-	{  2, " 3", "\U0001F0A3", SPADES, 0 },
-	{  3, " 4", "\U0001F0A4", SPADES, 0 },
-	{  4, " 5", "\U0001F0A5", SPADES, 0 },
-	{  5, " 6", "\U0001F0A6", SPADES, 0 },
-	{  6, " 7", "\U0001F0A7", SPADES, 0 },
-	{  7, " 8", "\U0001F0A8", SPADES, 0 },
-	{  8, " 9", "\U0001F0A9", SPADES, 0 },
-	{  9, "10", "\U0001F0Aa", SPADES, 0 },
-	{ 10, " J", "\U0001F0Ab", SPADES, 0 },
-	{ 11, " Q", "\U0001F0Ad", SPADES, 0 },
-	{ 12, " K", "\U0001F0Ae", SPADES, 0 },
-	{ 13, " A", "\U0001F0A1", SPADES, 0 },
+	{ TWO,   " 2", "\U0001F0A2", SPADES, 0 },
+	{ THREE, " 3", "\U0001F0A3", SPADES, 0 },
+	{ FOUR,  " 4", "\U0001F0A4", SPADES, 0 },
+	{ FIVE,  " 5", "\U0001F0A5", SPADES, 0 },
+	{ SIX,   " 6", "\U0001F0A6", SPADES, 0 },
+	{ SEVEN, " 7", "\U0001F0A7", SPADES, 0 },
+	{ EIGHT, " 8", "\U0001F0A8", SPADES, 0 },
+	{ NINE,  " 9", "\U0001F0A9", SPADES, 0 },
+	{ TEN,   "10", "\U0001F0Aa", SPADES, 0 },
+	{ JACK,  " J", "\U0001F0Ab", SPADES, 0 },
+	{ QUEEN, " Q", "\U0001F0Ad", SPADES, 0 },
+	{ KING,  " K", "\U0001F0Ae", SPADES, 0 },
+	{ ACE,   " A", "\U0001F0A1", SPADES, 0 },
 }
 
 /* The hand. It holds five cards. */
@@ -743,6 +753,12 @@ func straight() bool {
 	   shand[3].index == shand[2].index + 1 &&
 	   shand[4].index == shand[3].index + 1 { return true }
 
+	if shand[4].index == ACE   &&
+	   shand[0].index == TWO   &&
+	   shand[1].index == THREE &&
+	   shand[2].index == FOUR  &&
+	   shand[3].index == FIVE { return true }
+
 	return false
 }
 
@@ -839,11 +855,11 @@ func two() bool {
 const (
 	ROYAL = iota
 	STRFL
-	FOUR
+	FOURK
 	FULL
 	FLUSH
 	STR
-	THREE
+	THREEK
 	TWOPAIR
 	PAIR
 	NOTHING
@@ -915,11 +931,11 @@ func recognize() int {
 
 	if st && fl && shand[0].index == TEN { return ROYAL }
 	if st && fl { return STRFL }
-	if four() { return FOUR }
+	if four() { return FOURK }
 	if full() { return FULL }
 	if fl { return FLUSH }
 	if st { return STR }
-	if three() { return THREE }
+	if three() { return THREEK }
 	if twopair() { return TWOPAIR }
 	if two() { return PAIR }
 
