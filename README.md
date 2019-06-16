@@ -1,9 +1,9 @@
 ### Introduction
 
-This is the Go version of videopoker.
+This is the Go version of **videopoker**.
 
-I did this because I was wondering how long it would take to tranlate a 1000-line C program into Go.
-It took about 8 hours. It was not difficult at all, but some things had to be rewritten into the way things are done in Go: no pointer arithmetic, and different handling of Unicode, random number generation, and STDIN/STDOUT input and output.
+I did this because I was wondering how long it would take to translate a 1000-line C program into Go.
+It took about 8 hours. It was not difficult at all, but some things had to be rewritten into the way things are done in Go: no pointer arithmetic, and different handling of Unicode, random number generation, and stdin/stdout input and output.
 
 ### Quick Start
 

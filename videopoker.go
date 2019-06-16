@@ -200,19 +200,17 @@ var quiet bool = false
 
 func check_for_dupes() bool {
 //
-	var i, j int
-
-// For debugging: To enable checking, comment out the following line
-return false
-
-	for i = 0; i < CARDS; i++ {
+	// For debugging: To enable checking, un-comment the following:
+/*
+	for i := 0; i < CARDS; i++ {
 	//
-		for j = i+1; j < CARDS; j++ {
+		for j := i+1; j < CARDS; j++ {
 		//
 			if hand[i].index == hand[j].index &&
 			   hand[i].suit  == hand[j].suit { return true }
 		}
 	}
+*/
 
 	return false
 }
